@@ -1,14 +1,28 @@
 import React from 'react';
 
-const Status = ({win, current}) => {
+const Status = ({ win, current }) => {
   const noMoveLeft = current.boardInit.every(el => el !== null);
 
   return (
-    <h2>
-      {win && `Winner ${win}`}
-      {!win && !noMoveLeft && `Current player : ${current.isX ? 'X' : 'O'}`}
+    <div className="status-message">
+      {win && (
+        <>
+          Winner{' '}
+          <span className={win === 'X' ? 'text-green' : 'text-orange'}>
+            {win}
+          </span>
+        </>
+      )}
+      {!win && !noMoveLeft && (
+        <>
+          Current player :{' '}
+          <span className={current.isX ? 'text-green' : 'text-orange'}>
+            {current.isX ? 'X' : 'O'}
+          </span>
+        </>
+      )}
       {!win && noMoveLeft && 'TIE'}
-    </h2>
+    </div>
   );
 };
 
