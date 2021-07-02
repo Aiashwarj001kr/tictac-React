@@ -7,21 +7,23 @@ import { calWinner } from './winCal';
 
 import './styles/root.scss';
 
+const newGame = [
+  { boardInit: Array(9).fill(null), isX: true },
+];
+
 const App = () => {
   // // setting states boardInit for initial state and boardUp for update state
   // const [boardInit, boardUp] = useState(Array(9).fill(null));
   // const [isX, setIsX] = useState(false);
 
   // for track game history
-  const [history, setHistory] = useState([
-    { boardInit: Array(9).fill(null), isX: true },
-  ]);
+  const [history, setHistory] = useState(newGame);
 
   const [currentMove, setCurrentMove] = useState(0);
 
   const current = history[currentMove];
 
-  const win = calWinner(current.boardInit);
+  const {win, winSquare} = calWinner(current.boardInit);
 
 
 
@@ -52,11 +54,17 @@ const App = () => {
     setCurrentMove(move);
   };
 
+  const onNewGame = () => {
+    setHistory(newGame);
+    setCurrentMove(0);
+  }
+
   return (
     <div className="app">
       <h1>TIC TAC TOE !</h1>
       <Status win={win} current={current} />
-      <Board boardInit={current.boardInit} handleSqaure={handleSqaure} />
+      <Board boardInit={current.boardInit} handleSqaure={handleSqaure} winSquare={winSquare}/>
+      <button type="button" onClick={onNewGame}>Start New Game</button>
       <History history={history} moveTo={moveTo} currentMove={currentMove} />
     </div>
   );

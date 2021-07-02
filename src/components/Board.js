@@ -1,14 +1,18 @@
 import React from 'react';
 import Square from './Square';
 
-const Board = ({boardInit, handleSqaure}) => {
+const Board = ({boardInit, handleSqaure, winSquare}) => {
   
   // custom functions for rendering square.
   const renderState = position => {
+
+    const isWinSquare = winSquare.includes(position);
+
     return (
       <Square
         value={boardInit[position]}
         onClick={() => handleSqaure(position)}
+        isWinSquare={isWinSquare}
       />
     );
   };
