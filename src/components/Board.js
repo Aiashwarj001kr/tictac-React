@@ -1,26 +1,37 @@
 import React from 'react';
 import Square from './Square';
 
-const Board = () => {
+const Board = ({boardInit, handleSqaure}) => {
+  
+  // custom functions for rendering square.
+  const renderState = position => {
     return (
-        <div className="board">
-            <div className="board-row">
-                <Square value={0} />
-                <Square value={1} />
-                <Square value={2} />
-            </div>
-            <div className="board-row">
-                <Square value={4} />
-                <Square value={5} />
-                <Square value={6} />
-            </div>
-            <div className="board-row">
-                <Square value={7} />
-                <Square value={8} />
-                <Square value={9} />
-            </div>
-        </div>
+      <Square
+        value={boardInit[position]}
+        onClick={() => handleSqaure(position)}
+      />
     );
+  };
+
+  return (
+    <div className="board">
+      <div className="board-row">
+        {renderState(0)}
+        {renderState(1)}
+        {renderState(2)}
+      </div>
+      <div className="board-row">
+        {renderState(3)}
+        {renderState(4)}
+        {renderState(5)}
+      </div>
+      <div className="board-row">
+        {renderState(6)}
+        {renderState(7)}
+        {renderState(8)}
+      </div>
+    </div>
+  );
 };
 
 export default Board;
