@@ -1,4 +1,4 @@
 ## Public URL
 
-https://gametictac.aiashwarj.surge.sh
+http://gametictac.aiashwarj.surge.sh
 
